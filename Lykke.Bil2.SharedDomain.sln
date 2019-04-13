@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lykke.Bil2.SharedDomain", "src\Lykke.Bil2.SharedDomain\Lykke.Bil2.SharedDomain.csproj", "{8660AE7A-3269-4334-AD63-16A539AFC788}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{FDA9E001-3483-4142-A25B-87D56B94C584}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lykke.Bil2.SharedDomain.Tests", "tests\Lykke.Bil2.SharedDomain.Tests\Lykke.Bil2.SharedDomain.Tests.csproj", "{E7099028-5A07-4FBC-BC12-01E723D25C63}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8660AE7A-3269-4334-AD63-16A539AFC788}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8660AE7A-3269-4334-AD63-16A539AFC788}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8660AE7A-3269-4334-AD63-16A539AFC788}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8660AE7A-3269-4334-AD63-16A539AFC788}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7099028-5A07-4FBC-BC12-01E723D25C63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7099028-5A07-4FBC-BC12-01E723D25C63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7099028-5A07-4FBC-BC12-01E723D25C63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7099028-5A07-4FBC-BC12-01E723D25C63}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E7099028-5A07-4FBC-BC12-01E723D25C63} = {FDA9E001-3483-4142-A25B-87D56B94C584}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B81DB1AC-D7EA-4732-90B1-4EC24B9B2DDF}
+	EndGlobalSection
+EndGlobal
