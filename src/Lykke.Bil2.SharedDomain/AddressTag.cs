@@ -1,9 +1,14 @@
-﻿using JetBrains.Annotations;
+﻿using System;
+using System.ComponentModel;
+using JetBrains.Annotations;
+using Lykke.Bil2.SharedDomain.TypeConverters;
 
 namespace Lykke.Bil2.SharedDomain
 {
     [PublicAPI]
-    public sealed class AddressTag : BaseImplicitToStringValueType<AddressTag>
+    [Serializable]
+    [TypeConverter(typeof(AddressTagTypeConverter))]
+    public sealed class AddressTag : BaseStringValueType<AddressTag>
     {
         public AddressTag(string value) :
             base(value)

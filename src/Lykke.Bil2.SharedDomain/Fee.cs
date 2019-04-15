@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using Lykke.Numerics;
+using Newtonsoft.Json;
 
 namespace Lykke.Bil2.SharedDomain
 {
@@ -16,11 +17,13 @@ namespace Lykke.Bil2.SharedDomain
         /// <summary>
         /// Asset of the fee.
         /// </summary>
+        [JsonProperty("asset")]
         public Asset Asset { get; }
 
         /// <summary>
         /// Amount of the fee.
         /// </summary>
+        [JsonProperty("amount")]
         public UMoney Amount { get; }
 
         /// <summary>
