@@ -1,10 +1,14 @@
-﻿using JetBrains.Annotations;
+﻿using System;
+using System.ComponentModel;
+using JetBrains.Annotations;
+using Lykke.Bil2.SharedDomain.TypeConverters;
 
 namespace Lykke.Bil2.SharedDomain
 {
     [PublicAPI]
-    
-    public sealed class BlockId : BaseImplicitToStringValueType<BlockId>
+    [Serializable]
+    [TypeConverter(typeof(BlockIdTypeConverter))]
+    public sealed class BlockId : BaseStringValueType<BlockId>
     {
         public BlockId(string value) :
             base(value)

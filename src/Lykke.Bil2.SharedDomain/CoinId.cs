@@ -12,7 +12,7 @@ namespace Lykke.Bil2.SharedDomain
         /// Id of the transaction within which coin was created.
         /// </summary>
         [JsonProperty("transactionId")]
-        public string TransactionId { get; }
+        public TransactionId TransactionId { get; }
 
         /// <summary>
         /// Number of the coin inside the transaction within which coin was created.

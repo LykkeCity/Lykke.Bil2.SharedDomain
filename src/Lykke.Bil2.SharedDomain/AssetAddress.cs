@@ -1,10 +1,14 @@
-﻿using JetBrains.Annotations;
+﻿using System;
+using System.ComponentModel;
+using JetBrains.Annotations;
+using Lykke.Bil2.SharedDomain.TypeConverters;
 
 namespace Lykke.Bil2.SharedDomain
 {
     [PublicAPI]
-    
-    public sealed class AssetAddress : BaseImplicitToStringValueType<AssetAddress>
+    [Serializable]
+    [TypeConverter(typeof(AssetAddressTypeConverter))]
+    public sealed class AssetAddress : BaseStringValueType<AssetAddress>
     {
         public AssetAddress(string value) :
             base(value)

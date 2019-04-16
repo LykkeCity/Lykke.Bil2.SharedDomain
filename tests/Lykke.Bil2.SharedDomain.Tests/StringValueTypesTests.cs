@@ -3,11 +3,11 @@
 namespace Lykke.Bil2.SharedDomain.Tests
 {
     [TestFixture]
-    public class ImplicitToStringValueTypesTests
+    public class StringValueTypesTests
     {
-        private class TestImplicitToStringType : BaseImplicitToStringValueType<TestImplicitToStringType>
+        private class TestStringValueType : BaseStringValueType<TestStringValueType>
         {
-            public TestImplicitToStringType(string value) :
+            public TestStringValueType(string value) :
                 base(value)
             {
             }
@@ -33,27 +33,27 @@ namespace Lykke.Bil2.SharedDomain.Tests
         [TestCase("1234", "123", ExpectedResult = 52)]
         [TestCase("123", "123", ExpectedResult = 0)]
         public int TestComparison(string a, string b) => 
-            new TestImplicitToStringType(a).CompareTo(new TestImplicitToStringType(b));
+            new TestStringValueType(a).CompareTo(new TestStringValueType(b));
        
         [Test]
         [TestCase("123", "1234", ExpectedResult = false)]
         [TestCase("1234", "123", ExpectedResult = false)]
         [TestCase("123", "123", ExpectedResult = true)]
         public bool TestEquation(string a, string b) => 
-            new TestImplicitToStringType(a).Equals(new TestImplicitToStringType(b));
+            new TestStringValueType(a).Equals(new TestStringValueType(b));
 
         [Test]
         [TestCase("123", "1234", ExpectedResult = false)]
         [TestCase("1234", "123", ExpectedResult = false)]
         [TestCase("123", "123", ExpectedResult = true)]
         public bool TestEquationToObject(string a, string b) => 
-            new TestImplicitToStringType(a).Equals((object)new TestImplicitToStringType(b));
+            new TestStringValueType(a).Equals((object)new TestStringValueType(b));
 
         [Test]
         [TestCase("123", "1234", ExpectedResult = false)]
         [TestCase("1234", "123", ExpectedResult = false)]
         [TestCase("123", "123", ExpectedResult = true)]
         public bool TestHashCode(string a, string b) => 
-            new TestImplicitToStringType(a).GetHashCode() == new TestImplicitToStringType(b).GetHashCode();
+            new TestStringValueType(a).GetHashCode() == new TestStringValueType(b).GetHashCode();
     }
 }

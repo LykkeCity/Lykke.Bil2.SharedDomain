@@ -1,10 +1,14 @@
-﻿using JetBrains.Annotations;
+﻿using System;
+using System.ComponentModel;
+using JetBrains.Annotations;
+using Lykke.Bil2.SharedDomain.TypeConverters;
 
 namespace Lykke.Bil2.SharedDomain
 {
     [PublicAPI]
-    
-    public sealed class TransactionId : BaseImplicitToStringValueType<TransactionId>
+    [Serializable]
+    [TypeConverter(typeof(TransactionIdTypeConverter))]
+    public sealed class TransactionId : BaseStringValueType<TransactionId>
     {
         public TransactionId(string value) :
             base(value)

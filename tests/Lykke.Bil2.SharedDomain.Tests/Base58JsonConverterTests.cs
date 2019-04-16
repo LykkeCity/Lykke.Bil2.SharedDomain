@@ -27,7 +27,7 @@ namespace Lykke.Bil2.SharedDomain.Tests
 
         [Test]
         [TestCase("{\"Base58Property\":null}", ExpectedResult = null)]
-        [TestCase("{\"Base58Property\":\"\"}", ExpectedResult = "")]
+        [TestCase("{\"Base58Property\":\"\"}", ExpectedResult = null)]
         [TestCase("{\"Base58Property\":\"7YKZiHCxdLJS6i\"}", ExpectedResult = "the string")]
         public string Can_be_deserialized(string json)
         {

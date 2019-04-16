@@ -1,11 +1,11 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Text;
 using System.Text.RegularExpressions;
 using JetBrains.Annotations;
 using Lykke.Bil2.SharedDomain.Exceptions;
-using Lykke.Bil2.SharedDomain.JsonConverters;
+using Lykke.Bil2.SharedDomain.TypeConverters;
 using Multiformats.Base;
-using Newtonsoft.Json;
 
 namespace Lykke.Bil2.SharedDomain
 {
@@ -13,10 +13,13 @@ namespace Lykke.Bil2.SharedDomain
     /// Some binary object or probably json object encoded as base58 string.
     /// </summary>
     [PublicAPI]
-    [JsonConverter(typeof(Base58StringJsonConverter))]
+    [Serializable]
+    [ImmutableObject(true)]
+    [TypeConverter(typeof(Base58StringTypeConverter))]
     public sealed class Base58String :
         IComparable<Base58String>,
-        IEquatable<Base58String>
+        IEquatable<Base58String>,
+        IFormattable
     {
         private static Regex _formatRegex;
 
@@ -78,6 +81,11 @@ namespace Lykke.Bil2.SharedDomain
         }
 
         public override string ToString()
+        {
+            return Value;
+        }
+
+        public string ToString(string format, IFormatProvider formatProvider)
         {
             return Value;
         }

@@ -1,24 +1,24 @@
 ﻿using System;
+using System.ComponentModel;
 using JetBrains.Annotations;
-using Lykke.Bil2.SharedDomain.JsonConverters;
-using Newtonsoft.Json;
 
 namespace Lykke.Bil2.SharedDomain
 {
     [PublicAPI]
-    [JsonConverter(typeof(ImplicitToStringJsonConverter))]
-    public abstract class BaseImplicitToStringValueType<TConcrete> :
+    [ImmutableObject(true)]
+    public abstract class BaseStringValueType<TConcrete> :
         IComparable<TConcrete>,
-        IEquatable<TConcrete>
+        IEquatable<TConcrete>,
+        IFormattable
 
-        where TConcrete : BaseImplicitToStringValueType<TConcrete>
+        where TConcrete : BaseStringValueType<TConcrete>
     {
         /// <summary>
         /// The value
         /// </summary>
         public string Value { get; }
 
-        protected BaseImplicitToStringValueType(string value)
+        protected BaseStringValueType(string value)
         {
             if (string.IsNullOrWhiteSpace(value))
                 throw new ArgumentException("Should be not empty string", nameof(value));
@@ -27,6 +27,11 @@ namespace Lykke.Bil2.SharedDomain
         }
 
         public override string ToString()
+        {
+            return Value;
+        }
+
+        public string ToString(string format, IFormatProvider formatProvider)
         {
             return Value;
         }
@@ -63,12 +68,12 @@ namespace Lykke.Bil2.SharedDomain
             return Value != null ? Value.GetHashCode() : 0;
         }
 
-        public static bool operator ==(BaseImplicitToStringValueType<TConcrete> a, BaseImplicitToStringValueType<TConcrete> b)
+        public static bool operator ==(BaseStringValueType<TConcrete> a, BaseStringValueType<TConcrete> b)
         {
             return Equals(a, b);
         }
 
-        public static bool operator !=(BaseImplicitToStringValueType<TConcrete> a, BaseImplicitToStringValueType<TConcrete> b)
+        public static bool operator !=(BaseStringValueType<TConcrete> a, BaseStringValueType<TConcrete> b)
         {
             return !Equals(a, b);
         }
