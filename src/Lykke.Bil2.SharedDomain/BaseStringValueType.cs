@@ -8,7 +8,8 @@ namespace Lykke.Bil2.SharedDomain
     [ImmutableObject(true)]
     public abstract class BaseStringValueType<TConcrete> :
         IComparable<TConcrete>,
-        IEquatable<TConcrete>
+        IEquatable<TConcrete>,
+        IFormattable
 
         where TConcrete : BaseStringValueType<TConcrete>
     {
@@ -26,6 +27,11 @@ namespace Lykke.Bil2.SharedDomain
         }
 
         public override string ToString()
+        {
+            return Value;
+        }
+
+        public string ToString(string format, IFormatProvider formatProvider)
         {
             return Value;
         }

@@ -18,7 +18,8 @@ namespace Lykke.Bil2.SharedDomain
     [TypeConverter(typeof(Base58StringTypeConverter))]
     public sealed class Base58String :
         IComparable<Base58String>,
-        IEquatable<Base58String>
+        IEquatable<Base58String>,
+        IFormattable
     {
         private static Regex _formatRegex;
 
@@ -80,6 +81,11 @@ namespace Lykke.Bil2.SharedDomain
         }
 
         public override string ToString()
+        {
+            return Value;
+        }
+
+        public string ToString(string format, IFormatProvider formatProvider)
         {
             return Value;
         }
