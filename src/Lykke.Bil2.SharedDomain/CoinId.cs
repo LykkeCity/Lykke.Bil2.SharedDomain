@@ -23,6 +23,7 @@ namespace Lykke.Bil2.SharedDomain
         [JsonProperty("coinNumber"), DataMember(Order = 1)]
         public int CoinNumber { get; }
 
+        [JsonConstructor]
         public CoinId(string transactionId, int coinNumber)
             : this(new TransactionId(transactionId), coinNumber)
         {
