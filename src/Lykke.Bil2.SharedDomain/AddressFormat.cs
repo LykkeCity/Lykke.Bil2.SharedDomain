@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 
@@ -7,13 +8,13 @@ namespace Lykke.Bil2.SharedDomain
     /// <summary>
     /// Particular format of an address.
     /// </summary>
-    [PublicAPI]
+    [PublicAPI, DataContract]
     public sealed class AddressFormat : IEquatable<AddressFormat>
     {
         /// <summary>
         /// Address in the particular format.
         /// </summary>
-        [JsonProperty("address")]
+        [JsonProperty("address"), DataMember(Order = 0)]
         public Address Address { get; }
 
         /// <summary>
@@ -21,7 +22,7 @@ namespace Lykke.Bil2.SharedDomain
         /// Name of the format. Can be omitted for one item in the list.
         /// Omitted value will be interpreted as default address format.
         /// </summary>
-        [JsonProperty("formatName")]
+        [JsonProperty("formatName"), DataMember(Order = 1)]
         public string FormatName { get; }
 
         /// <summary>
