@@ -24,13 +24,20 @@ namespace Lykke.Bil2.SharedDomain
         public int CoinNumber { get; }
 
         public CoinId(string transactionId, int coinNumber)
+            : this(new TransactionId(transactionId), coinNumber)
         {
             if (string.IsNullOrWhiteSpace(transactionId))
                 throw new ArgumentException("Should be not empty string", nameof(transactionId));
+        }
 
+        public CoinId(TransactionId transactionId, int coinNumber)
+        {
+            if (transactionId == null)
+                throw new ArgumentNullException(nameof(transactionId));
+            
             if (coinNumber < 0)
                 throw new ArgumentOutOfRangeException(nameof(coinNumber), coinNumber, "Should be zero or positive number");
-
+            
             TransactionId = transactionId;
             CoinNumber = coinNumber;
         }
