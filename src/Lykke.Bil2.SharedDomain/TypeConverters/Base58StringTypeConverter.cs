@@ -12,13 +12,29 @@ namespace Lykke.Bil2.SharedDomain.TypeConverters
         {
             return sourceType == typeof(string);
         }
+        
+        public override bool CanConvertTo(
+            ITypeDescriptorContext context,
+            Type destinationType)
+        {
+            return destinationType == typeof(string);
+        }
 
         public override object ConvertFrom(
             ITypeDescriptorContext context,
             CultureInfo culture,
             object value)
         {
-            return new Base58String((string) value);
+            return value != null ? new Base58String((string) value) : null;
+        }
+        
+        public override object ConvertTo(
+            ITypeDescriptorContext context,
+            CultureInfo culture,
+            object value,
+            Type destinationType)
+        {
+            return value?.ToString();
         }
     }
 }
