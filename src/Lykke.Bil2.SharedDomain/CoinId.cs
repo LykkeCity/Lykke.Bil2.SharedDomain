@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Runtime.Serialization;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 
 namespace Lykke.Bil2.SharedDomain
@@ -6,18 +8,19 @@ namespace Lykke.Bil2.SharedDomain
     /// <summary>
     /// Id of the coin.
     /// </summary>
+    [PublicAPI, DataContract]
     public class CoinId : IEquatable<CoinId>
     {
         /// <summary>
         /// Id of the transaction within which coin was created.
         /// </summary>
-        [JsonProperty("transactionId")]
+        [JsonProperty("transactionId"), DataMember(Order = 0)]
         public TransactionId TransactionId { get; }
 
         /// <summary>
         /// Number of the coin inside the transaction within which coin was created.
         /// </summary>
-        [JsonProperty("coinNumber")]
+        [JsonProperty("coinNumber"), DataMember(Order = 1)]
         public int CoinNumber { get; }
 
         public CoinId(string transactionId, int coinNumber)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using JetBrains.Annotations;
 using Lykke.Numerics;
 using Newtonsoft.Json;
@@ -9,7 +10,7 @@ namespace Lykke.Bil2.SharedDomain
     /// <summary>
     /// Fee amount.
     /// </summary>
-    [PublicAPI]
+    [PublicAPI, DataContract]
     public sealed class Fee : 
         IComparable<Fee>,
         IEquatable<Fee>
@@ -17,13 +18,13 @@ namespace Lykke.Bil2.SharedDomain
         /// <summary>
         /// Asset of the fee.
         /// </summary>
-        [JsonProperty("asset")]
+        [JsonProperty("asset"), DataMember(Order = 0)]
         public Asset Asset { get; }
 
         /// <summary>
         /// Amount of the fee.
         /// </summary>
-        [JsonProperty("amount")]
+        [JsonProperty("amount"), DataMember(Order = 1)]
         public UMoney Amount { get; }
 
         /// <summary>

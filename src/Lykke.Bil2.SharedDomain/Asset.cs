@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 
@@ -8,7 +9,7 @@ namespace Lykke.Bil2.SharedDomain
     /// <summary>
     /// Asset.
     /// </summary>
-    [PublicAPI]
+    [PublicAPI, DataContract]
     public sealed class Asset :
         IComparable<Asset>,
         IEquatable<Asset>
@@ -16,7 +17,7 @@ namespace Lykke.Bil2.SharedDomain
         /// <summary>
         /// ID of the asset.
         /// </summary>
-        [JsonProperty("id")]
+        [JsonProperty("id"), DataMember(Order = 0)]
         public AssetId Id { get; }
 
         /// <summary>
@@ -24,7 +25,7 @@ namespace Lykke.Bil2.SharedDomain
         /// Address of the asset.
         /// </summary>
         [CanBeNull]
-        [JsonProperty("address")]
+        [JsonProperty("address"), DataMember(Order = 1)]
         public AssetAddress Address { get; }
 
         /// <summary>
