@@ -23,7 +23,7 @@ namespace Lykke.Bil2.SharedDomain.TypeConverters
             CultureInfo culture,
             object value)
         {
-            return Create((string) value);
+            return value != null ? Create((string) value) : null;
         }
     }
 }
