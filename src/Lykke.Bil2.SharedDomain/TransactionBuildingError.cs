@@ -14,9 +14,8 @@ namespace Lykke.Bil2.SharedDomain
     public enum TransactionBuildingError
     {       
         /// <summary>
-        /// There is not enough balance on the some of the input address.
-        /// Transaction can be rebuilt later with exactly the same parameters or
-        /// transferred amount, including fee, should be reduced.
+        /// there is not enough balance on the some of the source addresses. Transaction can be rebuilt later,
+        /// funds are refilled, with exactly the same parameters or amount to transfer, including fee, should be reduced.
         /// </summary>
         [EnumMember(Value = "notEnoughBalance")]
         NotEnoughBalance,
