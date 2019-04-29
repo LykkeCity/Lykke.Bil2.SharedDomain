@@ -6,11 +6,11 @@ namespace Lykke.Bil2.SharedDomain.Extensions
     public static class StringExtensions
     {
         /// <summary>
-        /// Encodes the string as Base58 string
+        /// Encodes the string as Base64 string
         /// </summary>
-        public static Base58String ToBase58(this string value)
+        public static Base64String ToBase64(this string value)
         {
-            return Base58String.Encode(value);
+            return Base64String.Encode(value);
         }
     }
 }

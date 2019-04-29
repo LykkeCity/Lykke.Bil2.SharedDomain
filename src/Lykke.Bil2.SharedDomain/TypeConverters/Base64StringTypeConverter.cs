@@ -4,7 +4,7 @@ using System.Globalization;
 
 namespace Lykke.Bil2.SharedDomain.TypeConverters
 {
-    internal class Base58StringTypeConverter : TypeConverter
+    internal class Base64StringTypeConverter : TypeConverter
     {
         public override bool CanConvertFrom(
             ITypeDescriptorContext context,
@@ -25,7 +25,7 @@ namespace Lykke.Bil2.SharedDomain.TypeConverters
             CultureInfo culture,
             object value)
         {
-            return value != null ? new Base58String((string) value) : null;
+            return value != null ? new Base64String((string) value) : null;
         }
         
         public override object ConvertTo(

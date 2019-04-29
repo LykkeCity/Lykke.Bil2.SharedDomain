@@ -1,50 +1,50 @@
 ﻿using System;
+using System.Buffers;
 using System.ComponentModel;
 using System.Text;
 using System.Text.RegularExpressions;
 using JetBrains.Annotations;
 using Lykke.Bil2.SharedDomain.Exceptions;
 using Lykke.Bil2.SharedDomain.TypeConverters;
-using Multiformats.Base;
 
 namespace Lykke.Bil2.SharedDomain
 {
     /// <summary>
-    /// Some binary object or probably json object encoded as base58 string.
+    /// Some binary object or probably json object encoded as base64 string.
     /// </summary>
     [PublicAPI]
     [Serializable]
     [ImmutableObject(true)]
-    [TypeConverter(typeof(Base58StringTypeConverter))]
-    public sealed class Base58String :
-        IComparable<Base58String>,
-        IEquatable<Base58String>,
+    [TypeConverter(typeof(Base64StringTypeConverter))]
+    public sealed class Base64String :
+        IComparable<Base64String>,
+        IEquatable<Base64String>,
         IFormattable
     {
         private static Regex _formatRegex;
 
         /// <summary>
-        /// Base58 encoded value
+        /// Base64 encoded value
         /// </summary>
         public string Value { get; }
 
-        static Base58String()
+        static Base64String()
         {
-            _formatRegex = new Regex("^[1-9A-HJ-NP-Za-km-z]*$", RegexOptions.Compiled);
+            _formatRegex = new Regex("^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$", RegexOptions.Compiled);
         }
 
-        public Base58String(string value)
+        public Base64String(string value)
         {
             if (value == null)
                 throw new ArgumentNullException(nameof(value));
 
             if (!_formatRegex.IsMatch(value))
-                throw new Base58StringConversionException("String is not valid Base58 string", value);
+                throw new Base64StringConversionException("String is not valid Base64 string", value);
 
             Value = value;
         }
 
-        public static Base58String Encode(string stringValue)
+        public static Base64String Encode(string stringValue)
         {
             if (stringValue == null)
             {
@@ -56,16 +56,16 @@ namespace Lykke.Bil2.SharedDomain
             return Encode(bytes);
         }
 
-        public static Base58String Encode(byte[] bytesValue)
+        public static Base64String Encode(byte[] bytesValue)
         {
             if (bytesValue == null)
             {
                 return null;
             }
 
-            var value = Multibase.Base58.Encode(bytesValue);
+            var value = Convert.ToBase64String(bytesValue);
 
-            return new Base58String(value);
+            return new Base64String(value);
         }
 
         public string DecodeToString()
@@ -77,7 +77,7 @@ namespace Lykke.Bil2.SharedDomain
 
         public byte[] DecodeToBytes()
         {
-            return Multibase.Base58.Decode(Value);
+            return Convert.FromBase64String(Value);
         }
 
         public override string ToString()
@@ -90,7 +90,7 @@ namespace Lykke.Bil2.SharedDomain
             return Value;
         }
 
-        public int CompareTo(Base58String other)
+        public int CompareTo(Base64String other)
         {
             if (ReferenceEquals(this, other)) 
                 return 0;
@@ -99,7 +99,7 @@ namespace Lykke.Bil2.SharedDomain
             return string.Compare(Value, other.Value, StringComparison.Ordinal);
         }
 
-        public bool Equals(Base58String other)
+        public bool Equals(Base64String other)
         {
             if (ReferenceEquals(null, other)) 
                 return false;
@@ -114,7 +114,7 @@ namespace Lykke.Bil2.SharedDomain
                 return false;
             if (ReferenceEquals(this, obj)) 
                 return true;
-            return obj is Base58String base58 && Equals(base58);
+            return obj is Base64String base64 && Equals(base64);
         }
 
         public override int GetHashCode()
@@ -122,12 +122,12 @@ namespace Lykke.Bil2.SharedDomain
             return Value != null ? Value.GetHashCode() : 0;
         }
 
-        public static bool operator ==(Base58String a, Base58String b)
+        public static bool operator ==(Base64String a, Base64String b)
         {
             return Equals(a, b);
         }
 
-        public static bool operator !=(Base58String a, Base58String b)
+        public static bool operator !=(Base64String a, Base64String b)
         {
             return !Equals(a, b);
         }
