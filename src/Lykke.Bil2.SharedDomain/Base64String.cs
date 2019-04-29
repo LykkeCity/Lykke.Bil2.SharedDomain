@@ -63,16 +63,7 @@ namespace Lykke.Bil2.SharedDomain
                 return null;
             }
 
-            Span<byte> buff = new byte[bytesValue.Length << 1];
-
-            var result = System.Buffers.Text.Base64.EncodeToUtf8(bytesValue, buff, out _, out var bytesWritten);
-
-            if (result != OperationStatus.Done)
-            {
-                throw new InvalidOperationException($"Failed to encode bytes to the base64 string. {result}");
-            }
-
-            var value = Encoding.UTF8.GetString(buff.Slice(0, bytesWritten));
+            var value = Convert.ToBase64String(bytesValue);
 
             return new Base64String(value);
         }
@@ -84,18 +75,9 @@ namespace Lykke.Bil2.SharedDomain
             return Encoding.UTF8.GetString(bytes);
         }
 
-        public Span<byte> DecodeToBytes()
+        public byte[] DecodeToBytes()
         {
-            Span<byte> buff = Encoding.UTF8.GetBytes(Value);
-
-            var result = System.Buffers.Text.Base64.DecodeFromUtf8InPlace(buff, out var bytesWritten);
-
-            if (result != OperationStatus.Done)
-            {
-                throw new InvalidOperationException($"Failed to decode base64 string to bytes. {result}");
-            }
-
-            return buff.Slice(0, bytesWritten);
+            return Convert.FromBase64String(Value);
         }
 
         public override string ToString()

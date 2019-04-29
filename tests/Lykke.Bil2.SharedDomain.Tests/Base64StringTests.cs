@@ -69,7 +69,7 @@ namespace Lykke.Bil2.SharedDomain.Tests
         {
             var value = new Base64String(base64Value);
 
-            return value.DecodeToBytes().ToArray();
+            return value.DecodeToBytes();
         }
 
         [Test]
