@@ -10,6 +10,11 @@ namespace Lykke.Bil2.SharedDomain
     [TypeConverter(typeof(AddressTypeConverter))]
     public sealed class Address : BaseStringValueType<Address>
     {
+        /// <summary>
+        /// Address can't be recognized.
+        /// </summary>
+        public static readonly Address Unrecognized = new Address("_Unrecognized_");
+
         public Address(string value) :
             base(value)
         {
