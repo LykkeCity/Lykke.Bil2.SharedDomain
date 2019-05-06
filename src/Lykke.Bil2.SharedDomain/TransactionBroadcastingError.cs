@@ -50,6 +50,13 @@ namespace Lykke.Bil2.SharedDomain
         /// is not included and will not be included to the any blockchain block.
         /// </summary>
         [EnumMember(Value = "retryLater")]
-        RetryLater 
+        RetryLater,
+
+        /// <summary>
+        /// Integration can't specify the reason why transaction is failed. Integration don't know
+        /// if the same transaction can be broadcasted later or not. Likely manual investigation is required.
+        /// </summary>
+        [EnumMember(Value = "unknown")]
+        Unknown
     }
 }
